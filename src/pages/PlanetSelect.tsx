@@ -142,7 +142,7 @@ export function PlanetSelect() {
                     onEndReachedThreshold={0.1}
                     onEndReached={({distanceFromEnd}) => handleFetchMore(distanceFromEnd)}
 
-                    ListaFooterComponent={
+                    ListFooterComponent={
                         loadingMore ? 
                         <ActivityIndicator color={colors.green} /> 
                         : <></>
@@ -185,4 +185,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:32,
         justifyContent:'center'
     },
+    plantList:{
+        
+    }
 })
