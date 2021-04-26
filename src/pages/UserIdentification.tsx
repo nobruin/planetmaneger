@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button } from '../components/Button';
 import colors from '../styles/colors';
@@ -13,7 +14,12 @@ export function UserIdentification() {
     const [name, setName] = useState<string>();
     const navigation = useNavigation();
 
-    function handleNavigation() {
+    async function handleNavigation() {
+        if(!name){
+            return Alert.alert(`Me diz como chamar você`);
+        }
+
+        await AsyncStorage.setItem('@plantmanager:user', name);
         navigation.navigate('Confirmation');
     }
 
